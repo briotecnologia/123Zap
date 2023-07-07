@@ -4,10 +4,11 @@ import React from 'react';
 import Loading from 'dan-components/Loading';
 import loadable from '../utils/loadable';
 
-export const BlankPage = loadable(() =>
-  import('./Pages/BlankPage'), {
-    fallback: <Loading />,
-  });
+//export const BlankPage = loadable(() =>
+//  import('./Pages/BlankPage'), {
+//    fallback: <Loading />,
+//  });
+
 export const DashboardPage = loadable(() =>
   import('./Pages/Dashboard'), {
     fallback: <Loading />,
@@ -58,5 +59,16 @@ export const ComingSoon = loadable(() =>
   });
 export const Parent = loadable(() =>
   import('./Parent'), {
+    fallback: <Loading />,
+  });
+
+
+  export const Bots = loadable(() =>
+  import('./Pages/Bots/Index'), {
+    fallback: <Loading />,
+  });
+
+  export const Documentação = loadable(() =>
+  import('./Pages/Documentação/Index'), {
     fallback: <Loading />,
   });

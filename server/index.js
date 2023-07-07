@@ -16,6 +16,21 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
 const { resolve } = require('path');
 const app = express();
 
+const cors = require('cors');
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (origin === 'https://dev01.briotecnologia.com.br'||'http://dev01.briotecnologia.com.br:3001'||'https://dev01.briotecnologia.com.br/webhook-test/teste') {
+      callback(null, true);
+    } else {
+      callback(new Error('Acesso negado por política de CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 // Load material icons

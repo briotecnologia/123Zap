@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'Dandelion Pro',
-  desc: 'Dandelion Pro - React Website Template',
-  prefix: 'dandelion',
+  name: 'Plataforma 123Zap!',
+  desc: 'Plataforma de automação em massa.',
+  prefix: '123Zap',
   footerText: 'Dandelion Pro All Rights Reserved 2018',
   logoText: 'Dandelion Pro',
 };

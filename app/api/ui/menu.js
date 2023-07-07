@@ -1,55 +1,31 @@
 module.exports = [
   {
     key: 'pages',
-    name: 'Pages',
+    name: 'Paginas',
     icon: 'ion-ios-paper-outline',
     child: [
       {
+        key: 'main_page',
+        name: 'Minhas Paginas',
+        title: true,
+      },
+      {
+        key: 'bots',
+        name: 'Meus Bots',
+        link: '/app/bots',
+        icon: 'ion-ios-bonfire-outline'
+      }, 
+      {
         key: 'other_page',
-        name: 'Welcome Page',
+        name: 'Documentação',
         title: true,
       },
       {
         key: 'blank',
-        name: 'Blank Page',
-        link: '/app',
+        name: '123Zap',
+        link: '/app/Documentação',
         icon: 'ion-ios-document-outline',
-      },
-      {
-        key: 'main_page',
-        name: 'Sample Page',
-        title: true,
-      },
-      {
-        key: 'dashboard',
-        name: 'Dashboard',
-        link: '/app/pages/dashboard',
-        icon: 'ion-ios-home-outline',
-      },
-      {
-        key: 'form',
-        name: 'Form',
-        link: '/app/pages/form',
-        icon: 'ion-ios-list-box-outline',
-      },
-      {
-        key: 'table',
-        name: 'Table',
-        link: '/app/pages/table',
-        icon: 'ion-ios-grid-outline',
-      },
-      {
-        key: 'maintenance',
-        name: 'Maintenance',
-        link: '/maintenance',
-        icon: 'ion-ios-build-outline'
-      },
-      {
-        key: 'coming_soon',
-        name: 'Coming Soon',
-        link: '/coming-soon',
-        icon: 'ion-ios-bonfire-outline'
-      },
+      }
     ]
   },
   {
