@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { AddInstancePost } from './AddInstancePost';
-import { CheckConnection } from './CheckConnection';
+import { PostAddInstance } from '../../../api/n8n/Instances/PostAddInstance';
+import { PostCheckInstance }from '../../../api/n8n/Instances/PostCheckInstance';
 
 function AddInstanceModal({ open, onClose, setSnackbarOpen, setMessage, setColorAlert }) {
   const [instance, setInstance] = useState('');
@@ -17,7 +17,7 @@ function AddInstanceModal({ open, onClose, setSnackbarOpen, setMessage, setColor
   const handleAdicionar = async () => {
     try {
       setIsLoading(true);
-      const jsonData = await AddInstancePost(instance);
+      const jsonData = await PostAddInstance(instance);
 
       console.log(jsonData);
       if (jsonData && jsonData.status === 'OK') {
@@ -44,7 +44,7 @@ function AddInstanceModal({ open, onClose, setSnackbarOpen, setMessage, setColor
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        const jsonData = await CheckConnection(
+        const jsonData = await PostCheckInstance(
           instance,
           setSnackbarOpen,
           setMessage,

@@ -9,13 +9,13 @@ import TableRow from '@mui/material/TableRow';                    // Material UI
 import Button from '@mui/material/Button';                        // Material UI - Representa um Botão  
 import Box from '@mui/material/Box';                              // Material UI - Representa uma caixa retangular
 import Fade from '@mui/material/Fade';                            // Material UI - permite fazer transições de fade  
-import Pagination from '@mui/material/Pagination';                // Material UI - fornece uma interface de paginação
-import AlertSnackbar from './AlertSnackbar';                      // Material UI - Importa alerta personalizado criado
+import Pagination from '@mui/material/Pagination';                // Material UI - fornece uma interface de paginação'
+import AlertSnackbar from '../../../components/Alerts/AlertSnackbar';                      // Material UI - Importa alerta personalizado criado
 import useStyles from 'dan-components/Tables/tableStyle-jss';     // Arquivo de estilo personalizado usado para aplicar estilos à tabela.
-import { fetchDataFromAPI } from './GetInstances';               // Arquivo que contem o modulo para retornar todas instancias do cliente via API
-import ConnectModal from './ConnectModal';                        // Arquivo que contem o modulo para enviar a solicitação de conexão da instacia via API   
-import AddInstanceModal from './AddInstanceModal';                    // Arquivo que contem o mudolo para enviar a solicitação de nova instancia via API
-import RemoveModal from './RemoveModal';                          // Arquivo que contem o mudolo para enviar a solicitação de remoção/desconexão da instancia via API
+import { fetchDataFromAPI } from '../../../api/n8n/Instances/GetInstancesAll';               // Arquivo que contem o modulo para retornar todas instancias do cliente via API
+import ConnectModal from '../Bots/ModalConnect';                        // Arquivo que contem o modulo para enviar a solicitação de conexão da instacia via API   
+import AddInstanceModal from '../Bots/ModalAddInstance';                    // Arquivo que contem o mudolo para enviar a solicitação de nova instancia via API
+import RemoveModal from '../Bots/ModalDisconnect';                          // Arquivo que contem o mudolo para enviar a solicitação de remoção/desconexão da instancia via API
 
 function WhatsAppBotsTable() {
   const { classes, cx } = useStyles();                                         // Extrai as classes e estilos personalizados de 'dan-components'
@@ -36,7 +36,7 @@ function WhatsAppBotsTable() {
   useEffect(() => {                                                                         // Possibilita a chamada a API 
     async function fetchDataWrapper() {                                                     // Inicia a chamada assicrona a API, definida em outro arquivo
       try {                                                                                 // Tentativa de requisição 
-        const jsonData = await fetchDataFromAPI(setSnackbarOpen,setMessage,setColorAlert);  // Requisição fetchDataFromAPI() - Arquivo importado anteriormente
+        const jsonData = await fetchDataFromAPI();  // Requisição fetchDataFromAPI() - Arquivo importado anteriormente
         const instances = jsonData.codeChatInstances || [];                                 // Inicializa a instancias para mapear os dados da API
         const formattedData = instances.map(item => {                                       // Mapeia os dados da API
           return {                                                                          // Retorna ( Dados mapeados )
@@ -49,6 +49,17 @@ function WhatsAppBotsTable() {
           };
         });
         
+        if(jsonData.status='OK'){
+          setMessage('Dados carregados com sucesso.');
+          setColorAlert('rgb(0, 170, 255)');
+          setSnackbarOpen(true);
+        }else if (jsonData.status='VAZIO') {
+          
+        } else {
+          setMessage('Algo deu errado. Entre em contato com o suporte.');
+          setColorAlert('rgb(255, 0, 59)');
+          setSnackbarOpen(true);
+        }
         setData(formattedData);                                                             // Cria a tabela com os dados mapeados
                 
       } finally {

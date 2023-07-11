@@ -9,7 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
-import { removePost } from './RemoveInstancePost';
+import { PostDisconnect } from '../../../api/n8n/Instances/PostDisconnect';
 
 function RemoveModal({ open, onClose, selectedInstance,setSnackbarOpen,setMessage,setColorAlert}) {
   const { instanceName = '', profileName = '', number = '', sessão = '' } = selectedInstance ?? {};
@@ -26,7 +26,7 @@ function RemoveModal({ open, onClose, selectedInstance,setSnackbarOpen,setMessag
 
   const handleRemove = async () => {
     try {
-      const jsonData = await removePost(selectedInstance, number, instanceName, profileName, escolha);
+      const jsonData = await PostDisconnect(selectedInstance, number, instanceName, profileName, escolha);
 
       if (jsonData && jsonData.status === 'OK') {
        
@@ -39,7 +39,14 @@ function RemoveModal({ open, onClose, selectedInstance,setSnackbarOpen,setMessag
         setSnackbarOpen(true);
 
         onClose(); // Fechar o modal
+      }else if (jsonData.status='VAZIO') {
+          
+      } else {
+        setMessage('Algo deu errado. Entre em contato com o suporte.');
+        setColorAlert('rgb(255, 0, 59)');
+        setSnackbarOpen(true);
       }
+
     } catch (error) {
       console.error('Erro ao remover a instância:', error);
     }

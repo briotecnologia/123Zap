@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
-import { fetchDataFromAPI } from './GetRedisDisponivel';
+import { fetchDataFromAPI } from '../../../api/n8n/Sessions/PostSessionsAvailable';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
-import { post } from './connectInstancePost';
+import { post } from  '../../../api/n8n/Instances/PostConnectInstance';
 
 function ConnectModal({ open, onClose,setSnackbarOpen,setMessage,setColorAlert, selectedInstance }) {
   const [loading, setLoading] = useState(true);

@@ -1,4 +1,4 @@
-export const post = async (selectedSession, selectedInstance, number, instanceName, profileName,setSnackbarOpen,setMessage,setColorAlert) => {
+export const post = async (selectedSession, selectedInstance, number, instanceName, profileName) => {
     try {
       const response = await fetch('https://dev01.briotecnologia.com.br/webhook/ConnectInstance', {
         method: 'POST',
@@ -15,9 +15,6 @@ export const post = async (selectedSession, selectedInstance, number, instanceNa
   
       if (response.ok) {
 
-        setMessage('WhatsApp conectado com sucesso.');
-        setColorAlert('rgb(0, 170, 255)');
-        setSnackbarOpen(true);
         // Conexão bem-sucedida, faça o tratamento necessário
         const data = await response.json();
         return data;

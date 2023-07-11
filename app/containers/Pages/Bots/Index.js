@@ -1,7 +1,7 @@
 import React from 'react';                           // Necessaria para criação de componentes React
 import { Helmet } from 'react-helmet';               // Possibilita a criação dinamica de Tags e Meta-Tag
 import { PapperBlock } from 'dan-components';        // Componente personalizado do template - Pagina Flutuante
-import WhatsAppBotsTable from './BotsTable';         // Tabela personalizada criada
+import WhatsAppBotsTable from '../Table/BotsTable';         // Tabela personalizada criada
 
 class Bots extends React.Component {                 // Representa o componente Bots
 

@@ -1,4 +1,4 @@
-export const removePost = async (selectedInstance, number, instanceName, profileName,escolha) => {
+export const PostDisconnect = async (selectedInstance, number, instanceName, profileName,escolha) => {
     try {
       const response = await fetch('https://dev01.briotecnologia.com.br/webhook/removeInstances', {
         method: 'POST',
